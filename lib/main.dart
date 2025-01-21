@@ -1,6 +1,6 @@
-import 'package:crypto_wallet/wallet_provider.dart';
+import 'package:crypto_wallet/providers/wallet_provider.dart';
 import 'package:flutter/material.dart';
-import 'package:crypto_wallet/wallet_provider.dart';
+import 'package:crypto_wallet/providers/wallet_provider.dart';
 import 'package:provider/provider.dart';
 
 void main() {
@@ -13,28 +13,27 @@ void main() {
 class MyApp extends StatelessWidget {
   const MyApp({super.key});
 
-  // This widget is the root of your application.
   @override
   Widget build(BuildContext context) {
-
     final walletProvider = Provider.of<WalletProvider>(context);
     return MaterialApp(
       title: 'Crypto Wallet',
       home: Scaffold(
         appBar: AppBar(
-          title: Text('Crpto Wallet'),
+          title: const Text('Crypto Wallet'),
         ),
         body: Center(
           child: Column(
             children: [
               ElevatedButton(
-                onPressed: () async
-                {
-                 final mnemonic = walletProvider.generateMnemonic();
-                 final privateKey = await walletProvider.getPrivateKey(mnemonic);
-                 final publicKey = await walletProvider.getPublicKey(privateKey);
+                onPressed: () async {
+                  final mnemonic = walletProvider.generateMnemonic();
+                  final privateKey =
+                      await walletProvider.getPrivateKey(mnemonic);
+                  final publicKey =
+                      await walletProvider.getPublicKey(privateKey);
                 },
-                child: Text('Generate Wallet'),
+                child: const Text('Generate Wallet'),
               ),
             ],
           ),

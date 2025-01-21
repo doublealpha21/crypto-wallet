@@ -1,3 +1,5 @@
+import 'dart:async';
+
 import 'package:web3dart/web3dart.dart';
 import 'package:flutter/foundation.dart';
 import 'package:bip39/bip39.dart' as bip39;
@@ -14,6 +16,19 @@ abstract class WalletAddressService {
 }
 
 class WalletProvider extends ChangeNotifier implements WalletAddressService {
+  String? privateKey;
+
+  Future<void> loadPrivateKey() async {
+    SharedPreferences prefs = await SharedPreferences.getInstance();
+    privateKey = prefs.getString('privateKey');
+  }
+
+  Future<void> setPrivateKey() async {
+    SharedPreferences prefs = await SharedPreferences.getInstance();
+    await prefs.setString('privateKey', privateKey!);
+    notifyListeners();
+  }
+
   @override
   String generateMnemonic() {
     return bip39.generateMnemonic();
