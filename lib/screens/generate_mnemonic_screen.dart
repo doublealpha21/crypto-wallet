@@ -1,4 +1,5 @@
 import 'package:crypto_wallet/providers/wallet_provider.dart';
+import 'package:crypto_wallet/screens/verify_mnemonic_screen.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter/services.dart';
 import 'package:provider/provider.dart';
@@ -18,7 +19,13 @@ class GenerateMnemonicScreen extends StatelessWidget {
           const SnackBar(content: Text('Mnemonic Copied To Clipboard')));
     }
 
-    // Navigator.push(context, MaterialPageRoute(builder: builder));
+    Navigator.push(
+      context,
+      MaterialPageRoute(
+        builder: (contex) => VerifyMnemonicScreen(mnemonic: mnemonic),
+      ),
+    );
+
     return Scaffold(
       appBar: AppBar(
         title: const Text('Generate Secret Phrase'),
