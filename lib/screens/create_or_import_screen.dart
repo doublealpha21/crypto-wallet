@@ -27,7 +27,6 @@ class CreateOrImportScreen extends StatelessWidget {
             ),
             const SizedBox(height: 24.0),
 
-            // Logo
             Container(
               width: double.infinity,
               alignment: Alignment.center,
@@ -41,8 +40,6 @@ class CreateOrImportScreen extends StatelessWidget {
               ),
             ),
             const SizedBox(height: 50.0),
-
-            // Login button
             ElevatedButton(
               onPressed: () {
                 Navigator.push(
@@ -68,7 +65,6 @@ class CreateOrImportScreen extends StatelessWidget {
 
             const SizedBox(height: 16.0),
 
-            // Register button
             ElevatedButton(
               onPressed: () {
                 // Add your register logic here

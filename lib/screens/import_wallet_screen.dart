@@ -25,12 +25,8 @@ class _ImportWalletScreenState extends State<ImportWalletScreen> {
   Widget build(BuildContext context) {
     void verifyMnemonic() async {
       final walletProvider =
-      Provider.of<WalletProvider>(context, listen: false);
-
-      // Call the getPrivateKey function from the WalletProvider
+          Provider.of<WalletProvider>(context, listen: false);
       final privateKey = await walletProvider.getPrivateKey(verificationText);
-
-      // Navigate to the WalletPage
       navigateToWalletPage();
     }
 

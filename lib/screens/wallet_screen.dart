@@ -1,4 +1,8 @@
+import 'dart:convert';
+
+import 'package:crypto_wallet/components/send_tokens.dart';
 import 'package:crypto_wallet/providers/wallet_provider.dart';
+import 'package:crypto_wallet/utils/get_balance.dart';
 import 'package:flutter/material.dart';
 import 'package:shared_preferences/shared_preferences.dart';
 import 'package:web3dart/web3dart.dart';
@@ -32,6 +36,20 @@ class _WalletScreenState extends State<WalletScreen> {
       setState(() {
         walletAddress = address.hex;
         pvKey = privateKey;
+      });
+      String response = await getBalances(address.hex, 'sepolia');
+
+      dynamic data = jsonDecode(response);
+      String newBalance = data['balance'] ?? '0';
+
+      EtherAmount latestBalance =
+          EtherAmount.fromBigInt(EtherUnit.gwei, BigInt.parse(newBalance));
+
+      String latestBalanceinEther =
+          latestBalance.getValueInUnit(EtherUnit.ether).toString();
+
+      setState(() {
+        balance = latestBalanceinEther;
       });
     }
   }
@@ -85,12 +103,12 @@ class _WalletScreenState extends State<WalletScreen> {
                     FloatingActionButton(
                       heroTag: 'sendButton', // Unique tag for send button
                       onPressed: () {
-                        /*Navigator.push(
-                            context,
-                            MaterialPageRoute(
-                                builder: (context) =>
-                                    SendTokensPage(privateKey: pvKey)),
-                          );*/
+                        Navigator.push(
+                          context,
+                          MaterialPageRoute(
+                              builder: (context) =>
+                                  SendTokensScreen(privateKey: pvKey)),
+                        );
                       },
                       child: const Icon(Icons.send),
                     ),
@@ -124,7 +142,6 @@ class _WalletScreenState extends State<WalletScreen> {
                     labelColor: Colors.blue,
                     tabs: [
                       Tab(text: 'Assets'),
-                      Tab(text: 'NFTs'),
                       Tab(text: 'Options'),
                     ],
                   ),
@@ -150,7 +167,7 @@ class _WalletScreenState extends State<WalletScreen> {
                                       ),
                                     ),
                                     Text(
-                                      balance,
+                                      balance.substring(0, 4),
                                       style: const TextStyle(
                                         fontSize: 24.0,
                                         fontWeight: FontWeight.bold,
@@ -162,11 +179,6 @@ class _WalletScreenState extends State<WalletScreen> {
                             ),
                           ],
                         ),
-                        // NFTs Tab
-                        /* SingleChildScrollView(
-                          child: NFTListPage(
-                              address: walletAddress, chain: 'sepolia'),
-                        ), */
                         // Options Tab
                         Center(
                           child: ListTile(

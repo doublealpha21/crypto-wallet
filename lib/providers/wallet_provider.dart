@@ -1,5 +1,4 @@
 import 'dart:async';
-
 import 'package:web3dart/web3dart.dart';
 import 'package:flutter/foundation.dart';
 import 'package:bip39/bip39.dart' as bip39;
