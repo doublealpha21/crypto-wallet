@@ -33,6 +33,12 @@ class _ImportWalletScreenState extends State<ImportWalletScreen> {
     return Scaffold(
       appBar: AppBar(
         title: const Text('Import from Seed'),
+        leading: IconButton(
+          onPressed: () {
+            Navigator.pop(context);
+          },
+          icon: const Icon(Icons.arrow_back_ios_new_outlined),
+        ),
       ),
       body: Padding(
         padding: const EdgeInsets.all(16.0),

@@ -40,6 +40,15 @@ class _VerifyMnemonicScreenState extends State<VerifyMnemonicScreen> {
     return Scaffold(
       appBar: AppBar(
         title: const Text('Verify Mnemonic and Create'),
+        leading: IconButton(
+          onPressed: () {
+            Navigator.pop(
+              context,
+              MaterialPageRoute(builder: (context) => const WalletScreen()),
+            );
+          },
+          icon: const Icon(Icons.arrow_back_ios_new_outlined),
+        ),
       ),
       body: Padding(
         padding: const EdgeInsets.all(16.0),

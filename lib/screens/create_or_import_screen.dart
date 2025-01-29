@@ -26,8 +26,7 @@ class CreateOrImportScreen extends StatelessWidget {
               ),
             ),
             const SizedBox(height: 24.0),
-
-            Container(
+            /* Container(
               width: double.infinity,
               alignment: Alignment.center,
               child: SizedBox(
@@ -38,7 +37,7 @@ class CreateOrImportScreen extends StatelessWidget {
                   fit: BoxFit.contain,
                 ),
               ),
-            ),
+            ),*/
             const SizedBox(height: 50.0),
             ElevatedButton(
               onPressed: () {
@@ -62,12 +61,9 @@ class CreateOrImportScreen extends StatelessWidget {
                 ),
               ),
             ),
-
-            const SizedBox(height: 16.0),
-
+            const SizedBox(height: 20.0),
             ElevatedButton(
               onPressed: () {
-                // Add your register logic here
                 Navigator.push(
                   context,
                   MaterialPageRoute(
@@ -76,9 +72,8 @@ class CreateOrImportScreen extends StatelessWidget {
                 );
               },
               style: ElevatedButton.styleFrom(
-                backgroundColor:
-                    Colors.white, // Customize button background color
-                foregroundColor: Colors.black, // Customize button text color
+                backgroundColor: Colors.white,
+                foregroundColor: Colors.black,
                 padding: const EdgeInsets.all(16.0),
               ),
               child: const Text(
