@@ -22,7 +22,7 @@ class GenerateMnemonicScreen extends StatelessWidget {
     Navigator.push(
       context,
       MaterialPageRoute(
-        builder: (contex) => VerifyMnemonicScreen(mnemonic: mnemonic),
+        builder: (context) => VerifyMnemonicScreen(mnemonic: mnemonic),
       ),
     );
 
